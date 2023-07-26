@@ -42,57 +42,6 @@ class MainActivity : AppCompatActivity() {
         getContacts()
     }
 
-    /*
-        private fun getContacts() {
-            val cursorsor = contentResolver.query(
-                ContactsContract.Contacts.CONTENT_URI,
-                null,
-                null,
-                null,
-                ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC"
-            )
-            if (cursorsor != null)
-                if (cursorsor.count > 0) {
-                    while (cursorsor.moveToNext()) {
-                        val hasPhoneNumber =
-                            cursorsor.getString(cursorsor.getColumnIndexOrThrow(ContactsContract.Contacts.HAS_PHONE_NUMBER))
-                                .toInt()
-                        if (hasPhoneNumber > 0) {
-                            val contactId =
-                                cursorsor.getString(cursorsor.getColumnIndexOrThrow(ContactsContract.Contacts._ID))
-                            val displayName =
-                                cursorsor.getString(cursorsor.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME))
-                          val image_uri =
-                            cursorsor.getColumnIndexOrThrow(ContactsContract.Contacts.PHOTO_THUMBNAIL_URI)
-
-                            val phonecursorsor = contentResolver.query(
-                                ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-                                null,
-                                ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?",
-                                arrayOf(contactId),
-                                null
-                            )
-
-                            if (phonecursorsor!!.moveToNext()) {
-                                val phoneNumber =
-                                    phonecursorsor.getString(
-                                        phonecursorsor.getColumnIndexOrThrow(
-                                            ContactsContract.CommonDataKinds.Phone.NUMBER
-                                        )
-                                    )
-                                contacts.add(Contact(displayName, phoneNumber, image_uri.toString()))
-                            }
-                            phonecursorsor.close()
-                        }
-                    }
-                }
-
-
-
-            cursorsor?.close()
-        }*/
-
-
     private fun getContacts() {
         val cursor = contentResolver.query(
             ContactsContract.Contacts.CONTENT_URI, null,
