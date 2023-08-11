@@ -1,10 +1,12 @@
 package com.example.contacts
 
+import android.content.ClipData.Item
 import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.avatarfirst.avatargenlib.AvatarGenerator
 import com.example.contacts.databinding.SingleItemBinding
@@ -12,7 +14,7 @@ import kotlin.random.Random
 
 
 class RvAdapter(private val context: Context, private var contacts: MutableList<Contact>) :
-    RecyclerView.Adapter<RvAdapter.ViewHolder>() {
+    ListAdapter<Contact, RvAdapter.ViewHolder>(ContactDiffUtilItemCallback()) {
 
     inner class ViewHolder(val binding: SingleItemBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -48,13 +50,6 @@ class RvAdapter(private val context: Context, private var contacts: MutableList<
         }
     }
 
-    fun setData(newLanguageList : MutableList<Contact>){
-        val diffUtil = ContactDiffUtilCallback(contacts , newLanguageList)
-        // it calculates the different items of the oldLanguageList and newLanguageList
-        val diffResult = DiffUtil.calculateDiff(diffUtil)
-        // assign oldLanguageList to newLanguageList
-        contacts = newLanguageList
-        diffResult.dispatchUpdatesTo(this)
-    }
+
     override fun getItemCount(): Int = contacts.size
 }

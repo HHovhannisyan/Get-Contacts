@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     private val REQUEST_READ_CONTACTS = 79
     private lateinit var binding: ActivityMainBinding
     private var contacts = mutableListOf<Contact>()
-    private val rvAdapter by lazy { RvAdapter(this,contacts) }
+    private val rvAdapter by lazy { RvAdapter(this, contacts) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
                 adapter = RvAdapter(this@MainActivity, contacts)
             }
         }
-        rvAdapter.setData(contacts)
+        rvAdapter.submitList(contacts)
 
         getContacts()
     }

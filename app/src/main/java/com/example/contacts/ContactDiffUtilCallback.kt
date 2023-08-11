@@ -2,26 +2,10 @@ package com.example.contacts
 
 import androidx.recyclerview.widget.DiffUtil
 
-class ContactDiffUtilCallback(
-    private val oldList: List<Contact>,
-    private val newList: List<Contact>
-) : DiffUtil.Callback() {
-    override fun getOldListSize(): Int {
-        return oldList.size
-    }
+class ContactDiffUtilItemCallback : DiffUtil.ItemCallback<Contact>() {
+    override fun areItemsTheSame(oldItem: Contact, newItem: Contact): Boolean =
+        oldItem.contactName == newItem.contactName
 
-    override fun getNewListSize(): Int {
-        return newList.size
-    }
-
-    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition].contactName == newList[newItemPosition].contactName
-    }
-
-    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition].contactName == newList[newItemPosition].contactName &&
-                oldList[oldItemPosition].phoneNumber == newList[newItemPosition].phoneNumber &&
-                oldList[oldItemPosition].img == newList[newItemPosition].img
-    }
-
+    override fun areContentsTheSame(oldItem: Contact, newItem: Contact): Boolean =
+        oldItem == newItem
 }
