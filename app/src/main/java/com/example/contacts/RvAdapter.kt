@@ -14,35 +14,41 @@ import kotlin.random.Random
 class RvAdapter(
     private val context: Context,
     //   private val contacts: MutableList<Contact>
-) : ListAdapter<Contact, RvAdapter.ViewHolder>(
+) : ListAdapter<Contact, RvAdapter.MyViewHolder>(
         ContactDiffUtilItemCallback()
     ) {
 
-    inner class ViewHolder(val binding: SingleItemBinding) : RecyclerView.ViewHolder(binding.root)
+  //  inner class ViewHolder(val binding: SingleItemBinding) : RecyclerView.ViewHolder(binding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = SingleItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(binding)
+        return MyViewHolder(binding,context)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val rnd = Random.Default
-        val color = Color.argb(255, rnd.nextInt(200), rnd.nextInt(200), rnd.nextInt(200))
-        val avatar = AvatarGenerator.AvatarBuilder(context)
-            .setLabel(getItem(position).contactName)
-            .setAvatarSize(80)
-            .setTextSize(20)
-            .toSquare()
-            .toCircle()
-            .setBackgroundColor(color)
-            .build()
-        with(holder) {
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+      holder.bind(getItem(position))
+    }
 
-            binding.apply {
-                with(getItem(position)) {
+    class MyViewHolder(
+        private val viewBinding: SingleItemBinding,
+        private val context: Context
+    ) : RecyclerView.ViewHolder(viewBinding.root) {
+        fun bind(itemData: Contact) = with(viewBinding) {
+            val rnd = Random.Default
+            val color = Color.argb(255, rnd.nextInt(200), rnd.nextInt(200), rnd.nextInt(200))
+            val avatar = AvatarGenerator.AvatarBuilder(context)
+                .setLabel(itemData.contactName)
+                .setAvatarSize(80)
+                .setTextSize(20)
+                .toSquare()
+                .toCircle()
+                .setBackgroundColor(color)
+                .build()
+
+            viewBinding.apply {
+                with(itemData) {
                     tvContactName.text = this.contactName
                     tvPhoneNumber.text = this.phoneNumber
-                    println("vContactName: " + this.contactName)
                     if (this.img != null) {
                         ivContactImg.setImageBitmap(this.img)
                     } else {
@@ -52,6 +58,7 @@ class RvAdapter(
             }
         }
     }
+
 
 
     // override fun getItemCount(): Int = currentList.size
