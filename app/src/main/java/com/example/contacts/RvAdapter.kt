@@ -1,11 +1,9 @@
 package com.example.contacts
 
-import android.content.ClipData.Item
 import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.avatarfirst.avatargenlib.AvatarGenerator
@@ -13,8 +11,12 @@ import com.example.contacts.databinding.SingleItemBinding
 import kotlin.random.Random
 
 
-class RvAdapter(private val context: Context, private var contacts: MutableList<Contact>) :
-    ListAdapter<Contact, RvAdapter.ViewHolder>(ContactDiffUtilItemCallback()) {
+class RvAdapter(
+    private val context: Context,
+    //   private val contacts: MutableList<Contact>
+) : ListAdapter<Contact, RvAdapter.ViewHolder>(
+        ContactDiffUtilItemCallback()
+    ) {
 
     inner class ViewHolder(val binding: SingleItemBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -27,7 +29,7 @@ class RvAdapter(private val context: Context, private var contacts: MutableList<
         val rnd = Random.Default
         val color = Color.argb(255, rnd.nextInt(200), rnd.nextInt(200), rnd.nextInt(200))
         val avatar = AvatarGenerator.AvatarBuilder(context)
-            .setLabel(contacts[position].contactName)
+            .setLabel(getItem(position).contactName)
             .setAvatarSize(80)
             .setTextSize(20)
             .toSquare()
@@ -37,9 +39,10 @@ class RvAdapter(private val context: Context, private var contacts: MutableList<
         with(holder) {
 
             binding.apply {
-                with(contacts[position]) {
+                with(getItem(position)) {
                     tvContactName.text = this.contactName
                     tvPhoneNumber.text = this.phoneNumber
+                    println("vContactName: " + this.contactName)
                     if (this.img != null) {
                         ivContactImg.setImageBitmap(this.img)
                     } else {
@@ -51,5 +54,5 @@ class RvAdapter(private val context: Context, private var contacts: MutableList<
     }
 
 
-    override fun getItemCount(): Int = contacts.size
+    // override fun getItemCount(): Int = currentList.size
 }
