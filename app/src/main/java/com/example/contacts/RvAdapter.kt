@@ -12,13 +12,8 @@ import kotlin.random.Random
 
 
 class RvAdapter(
-    private val context: Context,
-    //   private val contacts: MutableList<Contact>
-) : ListAdapter<Contact, RvAdapter.MyViewHolder>(
-        ContactDiffUtilItemCallback()
-    ) {
-
-  //  inner class ViewHolder(val binding: SingleItemBinding) : RecyclerView.ViewHolder(binding.root)
+    private val context: Context, ) : ListAdapter<Contact, RvAdapter.MyViewHolder>(
+        ContactDiffUtilItemCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = SingleItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -58,8 +53,4 @@ class RvAdapter(
             }
         }
     }
-
-
-
-    // override fun getItemCount(): Int = currentList.size
 }
