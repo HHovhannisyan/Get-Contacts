@@ -1,2 +1,2 @@
 # Get-Contacts
-![Screenshot_20230725_122838](https://github.com/HHovhannisyan/Get-Contacts/assets/115705782/d024f08e-5d8e-4c59-84b5-f9dcc8ce8a1b)
+![photo_2023-08-28_17-36-43](https://github.com/HHovhannisyan/Get-Contacts/assets/115705782/629b87a3-71b5-4a21-8d09-356bc7688e66)
