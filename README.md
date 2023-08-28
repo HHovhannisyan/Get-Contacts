@@ -1,4 +1,3 @@
 # Get-Contacts
 
-
-![contacts](https://github.com/HHovhannisyan/Get-Contacts/assets/115705782/acfe541a-9a98-41db-b8fd-ac6d1f592bf6)
+![contacts](https://github.com/HHovhannisyan/Get-Contacts/assets/115705782/b501700f-124e-4861-a350-2a3d6288b7a0)
