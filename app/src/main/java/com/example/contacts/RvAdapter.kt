@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.avatarfirst.avatargenlib.AvatarGenerator
@@ -12,16 +13,20 @@ import kotlin.random.Random
 
 
 class RvAdapter(
-    private val context: Context, ) : ListAdapter<Contact, RvAdapter.MyViewHolder>(
-        ContactDiffUtilItemCallback()) {
+    private val context: Context
+) : PagingDataAdapter<Contact, RvAdapter.MyViewHolder>(
+    ContactDiffUtilItemCallback()
+) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = SingleItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MyViewHolder(binding,context)
+        return MyViewHolder(binding, context)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-      holder.bind(getItem(position))
+        getItem(position)?.let {
+            holder.bind(it)
+        }
     }
 
     class MyViewHolder(

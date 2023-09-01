@@ -51,4 +51,6 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation (libs.avatarimagegenerator)
     implementation (libs.circleimageview)
+    implementation (libs.paging)
+    implementation (libs.lifecycle.runtime)
 }

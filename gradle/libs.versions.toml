@@ -10,6 +10,9 @@ material = "1.9.0"
 constraintlayout = "2.1.4"
 avatarimagegenerator="1.5.0"
 circleimageview="3.1.0"
+paging_version = "3.1.1"
+lifecycle_version = "2.6.1"
+
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -21,6 +24,10 @@ material = { group = "com.google.android.material", name = "material", version.r
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 avatarimagegenerator= { group = "com.github.amoskorir", name = "avatarimagegenerator", version.ref = "avatarimagegenerator" }
 circleimageview= { group = "de.hdodenhof", name = "circleimageview", version.ref = "circleimageview" }
+paging= { group = "androidx.paging", name = "paging-runtime", version.ref = "paging_version" }
+lifecycle-runtime={ group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle_version" }
+
+
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
